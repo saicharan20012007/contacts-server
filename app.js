@@ -23,6 +23,14 @@ connection.connect(err => {
 // Middleware to parse the request body as JSON
 app.use(express.json());
 
+// Set CORS headers to allow access from all origins and all methods
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 // Get all contacts
 app.get('/contacts', (req, res) => {
   const query = 'SELECT * FROM contacts';
@@ -84,5 +92,5 @@ app.post('/contacts', (req, res) => {
 
 // Start the server
 app.listen(8080, () => {
-  console.log('Server is running on port 3000');
+  console.log('Server is running on port 8080');
 });
