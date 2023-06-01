@@ -76,7 +76,7 @@ app.delete('/contacts/:id', (req, res) => {
 });
 
 // Add a new contact
-app.post('/contacts', (req, res) => {
+app.post('/add', (req, res) => {
   const newContact = req.body;
 
   const query = 'INSERT INTO contacts SET ?';
