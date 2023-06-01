@@ -100,18 +100,19 @@ app.post('/add', (req, res) => {
     newContact.revenue
   ];
 
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Set CORS header for the response
+
   connection.query(query, values, (err, result) => {
     if (err) {
       console.error('Error adding contact:', err);
-      res.status(500).json({ error: 'Failed to add contact' });
-      return;
-    }
-    res.json({ message: 'Contact added successfully' });
-  });
+res.status(500).json({ error: 'Failed to add contact' });
+return;
+}
+res.json({ message: 'Contact added successfully' });
 });
-
+});
 
 // Start the server
 app.listen(8080, () => {
-  console.log('Server is running on port 8080');
+console.log('Server is running on port 8080');
 });
