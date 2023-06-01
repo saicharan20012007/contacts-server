@@ -79,8 +79,28 @@ app.delete('/contacts/:id', (req, res) => {
 app.post('/add', (req, res) => {
   const newContact = req.body;
 
-  const query = 'INSERT INTO contacts SET ?';
-  connection.query(query, newContact, (err, result) => {
+  const query = 'INSERT INTO contacts (id, name, designation, status, work, company, industry, requirements, reference, responsibilities, remarks, date, location, email, phone, website, revenue) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  const values = [
+    newContact.id,
+    newContact.name,
+    newContact.designation,
+    newContact.status,
+    newContact.work,
+    newContact.company,
+    newContact.industry,
+    newContact.requirements,
+    newContact.reference,
+    newContact.responsibilities,
+    newContact.remarks,
+    newContact.date,
+    newContact.location,
+    newContact.email,
+    newContact.phone,
+    newContact.website,
+    newContact.revenue
+  ];
+
+  connection.query(query, values, (err, result) => {
     if (err) {
       console.error('Error adding contact:', err);
       res.status(500).json({ error: 'Failed to add contact' });
@@ -89,6 +109,7 @@ app.post('/add', (req, res) => {
     res.json({ message: 'Contact added successfully' });
   });
 });
+
 
 // Start the server
 app.listen(8080, () => {
