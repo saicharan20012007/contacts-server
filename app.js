@@ -4,12 +4,12 @@ const mysql = require('mysql');
 const app = express();
 
 // MySQL connection configuration
-const connection = mysql.createConnection({
-  host: '34.93.92.142',
-  user: 'root',
-  password: 'prabisha@2023',
-  database: 'prabisha'
-});
+// const connection = mysql.createConnection({
+//   host: '34.93.92.142',
+//   user: 'root',
+//   password: 'prabisha@2023',
+//   database: 'prabisha'
+// });
 
 // Connect to the MySQL database
 connection.connect(err => {
